@@ -1,0 +1,58 @@
+
+:root {
+    --school-green: #2ecc71; /* Vert émeraude pour Schola Nova */
+}
+
+.green-text {
+    color: var(--school-green) !important;
+}
+
+/* Encadré pour les diplômes ou certifications */
+.school-card {
+    border: 1px solid #333;
+    padding: 40px;
+    background: rgba(46, 204, 113, 0.02); /* Teinte verte très légère */
+    max-width: 850px;
+    width: 100%;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.school-card:hover {
+    border-color: var(--school-green);
+    box-shadow: 0 0 20px rgba(46, 204, 113, 0.1);
+}
+
+/* Badge de l'année scolaire */
+.year-badge {
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background: var(--bg-dark);
+    border: 1px solid var(--school-green);
+    color: var(--school-green);
+    padding: 5px 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Liste des compétences apprises à l'école */
+.skill-list {
+    list-style: none;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-tag {
+    font-size: 0.75rem;
+    border: 1px solid #444;
+    padding: 4px 10px;
+    color: #888;
+}
+
+.skill-tag:hover {
+    color: var(--school-green);
+    border-color: var(--school-green);
+}

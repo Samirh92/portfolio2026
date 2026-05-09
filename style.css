@@ -1,0 +1,141 @@
+/* --- CONFIGURATION GÉNÉRALE TECH --- */
+:root {
+    --bg-dark: #0a0a0a;       /* Noir profond */
+    --bg-panel: #141414;      /* Gris très sombre */
+    --text-main: #e0e0e0;     /* Texte clair */
+    --tech-cyan: #00ffff;     /* Cyan électrique */
+    --tech-blue: #00aaff;     /* Bleu tech */
+    --orange-brand: #ff6600;  /* Orange pour la marque */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow: hidden; /* Nécessaire pour le scroll-snap */
+}
+
+/* --- PERSONNALISATION DE LA BARRE DE DÉFILEMENT (SCROLLBAR) --- */
+/* Pour Chrome, Edge et Safari */
+.scroller::-webkit-scrollbar {
+    width: 8px; /* Largeur de la barre */
+}
+
+.scroller::-webkit-scrollbar-track {
+    background: var(--bg-dark); /* Couleur du fond de la barre */
+}
+
+.scroller::-webkit-scrollbar-thumb {
+    background: #333; /* Couleur de la partie qui bouge */
+    border-radius: 10px;
+}
+
+.scroller::-webkit-scrollbar-thumb:hover {
+    background: var(--tech-cyan); /* La barre devient cyan au survol */
+}
+
+/* --- EFFET DE TRANSITION (SCROLL SNAP) --- */
+.scroller {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+
+.section-v {
+    height: 100vh;
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center;     /* Centre verticalement */
+    scroll-snap-align: start;
+    padding: 40px;
+    position: relative;
+}
+
+/* --- ACCUEIL CENTRÉ --- */
+header.section-v .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* --- NAVIGATION TECH (BOUTONS) --- */
+.tech-nav {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+button {
+    background: transparent;
+    border: 1px solid var(--tech-cyan);
+    color: var(--tech-cyan);
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* --- TITRES --- */
+h1 {
+    font-size: 2.8rem;
+    color: var(--tech-blue);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 4px}
+
+   /* --- ALIGNEMENT LOGO ET TEXTE (Mis à jour) --- */
+.content-flex {
+    display: flex;
+    flex-direction: row;     /* Conserve l'alignement côte à côte */
+    align-items: center;     /* Centre le logo verticalement par rapport au bloc de texte */
+    gap: 30px;               /* Augmente l'espace pour respirer */
+    max-width: 950px;        /* Largeur max un peu plus grande */
+    margin: 0 auto;
+}
+
+.logo-container {
+    flex: 0 0 auto;          /* Empêche le logo de rétrécir */
+}
+
+.tech-logo {
+    /* NOUVELLE TAILLE : BIEN PLUS VISIBLE */
+    height: 3.5rem;          /* Plus de deux fois la taille du texte */
+    width: auto;             /* Conserve les proportions */
+    
+    filter: grayscale(100%) brightness(1.2); /* Gris/blanc Tech par défaut */
+    transition: all 0.4s ease;
+}
+
+/* Effet au survol pour le côté interactif */
+.section-v:hover .tech-logo {
+    filter: grayscale(0%) brightness(1); /* Reprend ses couleurs */
+    transform: scale(1.05); /* S'agrandit juste un tout petit peu */
+}
+
+.text-container {
+    flex: 1;
+}
+
+.text-container p {
+    text-align: left;
+    margin: 0;
+}

@@ -1,0 +1,188 @@
+/* ==========================================================================
+   1. VARIABLES & CONFIGURATION (L'ADN du site)
+   ========================================================================== 
+*/
+:root {
+    /* Couleurs */
+    --bg-dark: #0a0a0a;         /* Fond principal */
+    --bg-panel: #141414;        /* Fond des cartes */
+    --text-main: #e0e0e0;       /* Texte clair */
+    --text-dim: #888;           /* Texte secondaire */
+    
+    /* Accents */
+    --tech-cyan: #00ffff;       /* Cyan (Boutons/Détails) */
+    --tech-blue: #00aaff;       /* Bleu (Titres/Accents) */
+    --orange-brand: #ff6600;    /* Orange (Orange Wholesale) */
+    --school-green: #2ecc71;    /* Vert (Schola Nova) */
+    
+    /* Espacement */
+    --gap-standard: 30px;
+}
+
+/* ==========================================================================
+   2. RESET & BASE (Nettoyage)
+   ========================================================================== 
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    overflow: hidden; /* Nécessaire pour le scroll-snap */
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   3. STRUCTURE DE NAVIGATION (SCROLL-SNAP)
+   ========================================================================== 
+*/
+.scroller {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+
+/* Personnalisation de la Scrollbar */
+.scroller::-webkit-scrollbar { width: 6px; }
+.scroller::-webkit-scrollbar-track { background: var(--bg-dark); }
+.scroller::-webkit-scrollbar-thumb { 
+    background: #333; 
+    border-radius: 10px; 
+}
+.scroller::-webkit-scrollbar-thumb:hover { background: var(--tech-cyan); }
+
+/* Sections plein écran */
+.section-v {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start;
+    padding: 60px 40px;
+    position: relative;
+}
+
+/* ==========================================================================
+   4. COMPOSANTS DE NAVIGATION
+   ========================================================================== 
+*/
+/* Navigation flottante en haut à droite */
+.top-right-nav {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 1000;
+    display: flex;
+    gap: 15px;
+}
+
+/* Boutons standards */
+button, .nav-button, .pdf-button {
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid var(--tech-cyan);
+    color: var(--tech-cyan);
+    padding: 10px 20px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+button:hover, .nav-button:hover, .pdf-button:hover {
+    background: rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 15px var(--tech-cyan);
+}
+
+/* Spécificité bouton PDF (Orange) */
+.pdf-button {
+    border-color: var(--orange-brand);
+    color: var(--orange-brand);
+}
+.pdf-button:hover {
+    background: rgba(255, 102, 0, 0.1);
+    box-shadow: 0 0 15px var(--orange-brand);
+}
+
+/* ==========================================================================
+   5. MISES EN PAGE (LAYOUTS)
+   ========================================================================== 
+*/
+/* Centrage de l'accueil */
+header.section-v .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Flexbox Texte + Image ou Bouton */
+.content-flex, .content-flex-school {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.text-container { flex: 2; }
+.image-container, .image-container-school { flex: 1; display: flex; justify-content: center; }
+
+/* ==========================================================================
+   6. CARTES & BLOCS (ECOLE / ENTREPRISE)
+   ========================================================================== 
+*/
+/* Carte École */
+.school-card {
+    border: 1px solid #333;
+    padding: 40px;
+    background: rgba(46, 204, 113, 0.02);
+    width: 100%;
+    position: relative;
+    transition: 0.4s;
+}
+.school-card:hover {
+    border-color: var(--school-green);
+    box-shadow: 0 0 20px rgba(46, 204, 113, 0.1);
+}
+
+/* Badge Année */
+.year-badge {
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background: var(--bg-dark);
+    border: 1px solid var(--school-green);
+    color: var(--school-green);
+    padding: 5px 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Bloc action (Bouton cliquable à la place de l'image) */
+.tech-box {
+    border: 1px solid #333;
+    padding: 25px;
+    text-align: center;
+    width: 100%;
+    transition: 0.3s;
+}
+.tech-box:hover { border-color: var(--tech-cyan); }
+
+/* ==========================================================================
+   7. IMAGES & ICONES
+   ========================================================================== 
+*/
+.img-school, .img-work {
+    max-width: 200px;
+    height: auto;
+    border: 1px solid #333;
+    padding: 8

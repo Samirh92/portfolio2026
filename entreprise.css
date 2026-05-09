@@ -1,0 +1,58 @@
+/* --- STYLE SPÉCIFIQUE ENTREPRISE --- */
+.orange-text {
+    color: var(--orange-brand) !important;
+}
+
+/* Conteneur d'image à côté du texte */
+.image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.img-work {
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #333;
+    filter: grayscale(30%); /* Un peu désaturé pour le style tech */
+    transition: 0.3s;
+}
+
+.img-work:hover {
+    filter: grayscale(0%);
+    border-color: var(--orange-brand);
+}
+
+/* Inversion texte/image pour le rythme */
+.reversed {
+    flex-direction: row-reverse;
+}
+
+/* BOUTON PDF SUBTIL */
+.pdf-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 30px;
+    border: 1px solid var(--orange-brand);
+    color: var(--orange-brand);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.pdf-button:hover {
+    background: rgba(255, 102, 0, 0.1);
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.4);
+}
+
+/* Adaptation pour mobile */
+@media (max-width: 768px) {
+    .content-flex, .reversed {
+        flex-direction: column;
+        text-align: center;
+    }
+    .text-container {
+        margin-bottom: 20px;
+    }
+}

@@ -1,0 +1,421 @@
+/* ==========================================================================
+   1. VARIABLES & CONFIGURATION (L'ADN du site)
+   ========================================================================== 
+*/
+:root {
+    /* Couleurs */
+    --bg-dark: #0a0a0a;         /* Fond principal */
+    --bg-panel: #141414;        /* Fond des cartes */
+    --text-main: #e0e0e0;       /* Texte clair */
+    --text-dim: #888;           /* Texte secondaire */
+    
+    /* Accents */
+    --tech-cyan: #00ffff;       /* Cyan (Boutons/Détails) */
+    --tech-blue: #00aaff;       /* Bleu (Titres/Accents) */
+    --orange-brand: #ff6600;    /* Orange (Orange Wholesale) */
+    --school-green: #2ecc71;    /* Vert (Schola Nova) */
+    
+    /* Espacement */
+    --gap-standard: 30px;
+}
+
+/* ==========================================================================
+   2. RESET & BASE (Nettoyage)
+   ========================================================================== 
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    overflow: hidden; /* Nécessaire pour le scroll-snap */
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   3. STRUCTURE DE NAVIGATION (SCROLL-SNAP)
+   ========================================================================== 
+*/
+.scroller {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+
+/* Personnalisation de la Scrollbar */
+.scroller::-webkit-scrollbar { width: 6px; }
+.scroller::-webkit-scrollbar-track { background: var(--bg-dark); }
+.scroller::-webkit-scrollbar-thumb { 
+    background: #333; 
+    border-radius: 10px; 
+}
+.scroller::-webkit-scrollbar-thumb:hover { background: var(--tech-cyan); }
+
+/* Sections plein écran */
+.section-v {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start;
+    padding: 60px 40px;
+    position: relative;
+}
+
+/* ==========================================================================
+   4. COMPOSANTS DE NAVIGATION
+   ========================================================================== 
+*/
+/* Navigation flottante en haut à droite */
+.top-right-nav {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 1000;
+    display: flex;
+    gap: 15px;
+}
+
+/* Boutons standards */
+button, .nav-button, .pdf-button {
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid var(--tech-cyan);
+    color: var(--tech-cyan);
+    padding: 10px 20px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+button:hover, .nav-button:hover, .pdf-button:hover {
+    background: rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 15px var(--tech-cyan);
+}
+
+/* Spécificité bouton PDF (Orange) */
+.pdf-button {
+    border-color: var(--orange-brand);
+    color: var(--orange-brand);
+}
+.pdf-button:hover {
+    background: rgba(255, 102, 0, 0.1);
+    box-shadow: 0 0 15px var(--orange-brand);
+}
+
+/* ==========================================================================
+   5. MISES EN PAGE (LAYOUTS)
+   ========================================================================== 
+*/
+/* Centrage de l'accueil */
+header.section-v .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Flexbox Texte + Image ou Bouton */
+.content-flex, .content-flex-school {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.text-container { flex: 2; }
+.image-container, .image-container-school { flex: 1; display: flex; justify-content: center; }
+
+/* ==========================================================================
+   6. CARTES & BLOCS (ECOLE / ENTREPRISE)
+   ========================================================================== 
+*/
+/* Carte École */
+.school-card {
+    border: 1px solid #333;
+    padding: 40px;
+    background: rgba(46, 204, 113, 0.02);
+    width: 100%;
+    position: relative;
+    transition: 0.4s;
+}
+.school-card:hover {
+    border-color: var(--school-green);
+    box-shadow: 0 0 20px rgba(46, 204, 113, 0.1);
+}
+
+/* Badge Année */
+.year-badge {
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background: var(--bg-dark);
+    border: 1px solid var(--school-green);
+    color: var(--school-green);
+    padding: 5px 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Bloc action (Bouton cliquable à la place de l'image) */
+.tech-box {
+    border: 1px solid #333;
+    padding: 25px;
+    text-align: center;
+    width: 100%;
+    transition: 0.3s;
+}
+.tech-box:hover { border-color: var(--tech-cyan); }
+
+/* ==========================================================================
+   7. IMAGES & ICONES
+   ========================================================================== 
+*/
+.img-school, .img-work {
+    max-width: 200px;
+    height: auto;
+    border: 1px solid #333;
+    padding: 8}
+    /* --- STYLE PROFIL PRÉSENTATION --- */
+
+.profile-frame {
+    position: relative;
+    padding: 10px;
+    border: 2px solid var(--tech-blue);
+    background: rgba(0, 170, 255, 0.05);
+}
+
+.img-profile {
+    width: 250px;
+    height: 250px;
+    object-fit: cover; /* Garde les proportions de ta photo */
+    filter: grayscale(100%) contrast(1.1); /* Look artistique noir et blanc */
+    transition: 0.5s;
+}
+
+.profile-frame:hover .img-profile {
+    filter: grayscale(0%);
+}
+
+/* Petit point vert "Online" en bas de la photo */
+.status-indicator {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    background: var(--school-green);
+    border-radius: 50%;
+    border: 3px solid var(--bg-dark);
+    box-shadow: 0 0 10px var(--school-green);
+}
+
+/* On réutilise tech-box pour faire des colonnes propres */
+.section-v .content-flex .tech-box {
+    flex: 1;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+/* --- CADRE PHOTO POUR PRÉSENTATION --- */
+.tech-frame {
+    position: relative;
+    border: 1px solid #333;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.4s ease;
+}
+
+.tech-frame:hover {
+    border-color: var(--tech-cyan);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+/* On s'assure que les images de présentation sont propres */
+.tech-frame img {
+    max-width: 280px; /* Taille ajustable selon tes besoins */
+    height: auto;
+    display: block;
+    filter: grayscale(100%);
+    transition: filter 0.4s ease;
+}
+
+.tech-frame:hover img {
+    filter: grayscale(0%);
+}
+
+/* Optionnel : Ajout d'un petit effet "code" sur les paragraphes de présentation */
+.section-v .text-container p {
+    border-left: 2px solid #222;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+/* --- STYLE PRÉSENTATION CENTRÉE ET AGRANDIE --- */
+
+/* On agrandit spécifiquement le nom */
+.name-large {
+    font-size: 4rem !important; /* Très grand pour l'impact */
+    letter-spacing: 8px;
+    margin-bottom: 30px;
+}
+
+/* Conteneur pour le texte de la bio */
+.bio-container {
+    max-width: 900px; /* On élargit la zone de lecture */
+    text-align: center;
+}
+
+.bio-container p {
+    font-size: 1.4rem; /* Texte beaucoup plus lisible */
+    line-height: 1.8;
+    color: var(--text-main);
+    border-left: none; /* On enlève la barre latérale pour le centrage */
+    padding: 0;
+}
+
+/* Optionnel : Une petite barre de séparation cyan sous le nom */
+.name-large::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 3px;
+    background: var(--tech-cyan);
+    margin: 20px auto;
+}
+/* Centrage vertical et horizontal pour les sections de texte */
+.center-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+/* Taille du texte pour les paragraphes de présentation */
+.large-p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+/* Centrage de la barre cyan sous ton nom */
+.name-large::after {
+    content: "";
+    display: block;
+    width: 120px;
+    height: 3px;
+    background: var(--tech-cyan);
+    margin: 20px auto 0;
+}
+   /* --- NOUVEAU STYLE POUR L'IMAGE AGRANDIE (POPOUT) --- */
+
+.image-popout-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.img-school-large {
+    /* ÉTAPE 1 : On fixe une largeur grande et constante */
+    width: 550px !important; /* Augmente cette valeur si tu la veux encore plus grande */
+    height: auto;
+    
+    /* ÉTAPE 2 : On la fait sortir de son conteneur flex */
+    position: relative;
+    
+    /* ÉTAPE 3 : On utilise des marges négatives pour la centrer horizontalement */
+    /* par rapport à la colonne de droite, sans pousser le texte. */
+    margin-left: -175px; /* (Largeur de l'image - Largeur colonne) / 2 */
+    
+    /* Style visuel conservé */
+    border: 1px solid var(--school-green);
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.4s ease;
+    z-index: 10; /* Pour qu'elle passe au-dessus si besoin */
+}
+
+/* Optionnel : Un petit effet au survol pour la mettre encore plus en valeur */
+.image-popout-container:hover .img-school-large {
+    transform: scale(1.02); /* Agrandissement très léger */
+    box-shadow: 0 0 25px rgba(46, 204, 113, 0.3);
+}
+
+/* RESPONSIVE : On annule l'effet sur mobile */
+@media (max-width: 800px) {
+    .img-school-large {
+        width: 100% !important;
+        margin-left: 0;
+        position: static;
+    }
+}
+/* --- LAYOUT VERTICAL SIMPLE --- */
+
+.simple-vertical-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Espace entre le texte et l'image */
+}
+
+.text-block {
+    width: 100%;
+}
+
+.image-block {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.img-large-centered {
+    width: 100%;
+    max-width: 850px; /* On limite pour que ça reste net */
+    height: auto;
+    border: 1px solid #333;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.03);
+    transition: border-color 0.3s ease;
+}
+
+/* Effet au survol de la carte */
+.school-card:hover .img-large-centered {
+    border-color: var(--school-green);
+}
+/* --- STYLE VISIONNEUSE DE SLIDES --- */
+
+.viewer-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-top: 80px; /* Espace pour les boutons du haut */
+}
+
+.viewer-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.slides-frame {
+    flex-grow: 1; /* Prend tout l'espace restant */
+    border: 2px solid #333;
+    background: #000;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.slides-frame embed {
+    border: none;
+}
