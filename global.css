@@ -419,3 +419,63 @@ header.section-v .content {
 .slides-frame embed {
     border: none;
 }
+/* Style pour la liste de documents */
+.doc-list {
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* On ajuste tech-box pour qu'ils soient bien côte à côte */
+.content-flex .tech-box {
+    flex: 1;
+    max-width: 400px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+/* Animation sur les boutons de choix */
+.tech-box:hover {
+    transform: translateY(-10px);
+    border-color: var(--tech-blue);
+    background: rgba(0, 170, 255, 0.05);
+}
+/* --- MISE EN PAGE EMPILLÉE POUR LES GRANDS SCREENS --- */
+
+.content-stacked {
+    display: flex;
+    flex-direction: column; /* Force le texte en haut et l'image en bas */
+    gap: 30px;
+    width: 100%;
+}
+
+.text-full {
+    width: 100%;
+}
+
+.image-full-width {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centre l'image si elle n'est pas assez large */
+}
+
+.img-fluid-large {
+    /* L'image prendra toute la largeur de la carte sans déborder */
+    width: 100%; 
+    max-width: 900px; /* Limite la taille pour ne pas que ce soit pixelisé */
+    height: auto;
+    border: 1px solid var(--school-green);
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.img-fluid-large:hover {
+    transform: scale(1.01);
+    box-shadow: 0 0 20px rgba(46, 204, 113, 0.2);
+}
