@@ -479,3 +479,75 @@ header.section-v .content {
     transform: scale(1.01);
     box-shadow: 0 0 20px rgba(46, 204, 113, 0.2);
 }
+
+/* --- NAVIGATION TECH GLOBALE (injectée via tech-nav.js) --- */
+.tech-nav {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.tech-nav button {
+    background: transparent;
+    border: 1px solid var(--tech-cyan);
+    color: var(--tech-cyan);
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.tech-nav button:hover {
+    background-color: rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.tech-nav button.is-active {
+    background-color: var(--tech-cyan);
+    color: var(--bg-dark);
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.7);
+    cursor: default;
+}
+
+.tech-nav button.is-active:hover {
+    background-color: var(--tech-cyan);
+}
+
+/* --- TITRES PAR DÉFAUT --- */
+h1 {
+    font-size: 2.8rem;
+    color: var(--tech-blue);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+/* --- LOGO TECH --- */
+.logo-container {
+    flex: 0 0 auto;
+}
+
+.tech-logo {
+    height: 3.5rem;
+    width: auto;
+    filter: grayscale(100%) brightness(1.2);
+    transition: all 0.4s ease;
+}
+
+.section-v:hover .tech-logo {
+    filter: grayscale(0%) brightness(1);
+    transform: scale(1.05);
+}
+
+/* --- PAGE VIEWER PDF (pp.html) --- */
+.viewer-page {
+    overflow: hidden;
+}
